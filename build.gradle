@@ -1,12 +1,33 @@
+buildscript {
+  ext {
+    springBootVersion = '2.1.16.RELEASE'
+  }
+  repositories {
+	mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.1.16.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
 group = 'com.usb.usbwebapp'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+version = System.env.APP_VERSION ?: '0.0.1'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 repositories {
 	mavenCentral()
